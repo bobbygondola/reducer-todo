@@ -1,10 +1,10 @@
 import React, { useState } from "react";
 
-const TodoForm = (props) => {
+const TodoForm = ({ addNewTask, filterTasks }) => {
   //rules of todays form
-  console.log(props);
+  
   const [newTaskName, SetNewTaskName] = useState("");
-
+  
   const handleChanges = (e) => {
     SetNewTaskName(e.target.value);
   };
@@ -14,6 +14,11 @@ const TodoForm = (props) => {
     addNewTask(newTaskName);
     SetNewTaskName("");
   };
+
+  const handleClearCompleted = e => {
+    e.preventDefault();
+    filterTasks();
+}
   return (
     <div className="form">
       <h3>Input the Projects of today!</h3>
@@ -21,13 +26,14 @@ const TodoForm = (props) => {
         <input
           type="text"
           name="newTask"
-          placeholder="Add a new task"
+          placeholder="new task"
           value={newTaskName}
           onChange={handleChanges}
         />
         <button type="submit" className="submitBut">
           Add
         </button>
+        <button type="button" onClick={handleClearCompleted}>Clear</button>
       </form>
     </div>
   );

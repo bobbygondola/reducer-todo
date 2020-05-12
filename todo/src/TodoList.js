@@ -8,8 +8,12 @@ const ToDoList = props => {
                 return (
                     <Todo
                        key={task.id}
+                       id={task.id}
                         name={task.item}
-                        status={task.completed} />
+                        status={task.completed} 
+                        toggleTask={props.toggleTask}
+                         />
+                        
                 )
             })}
         </div>
